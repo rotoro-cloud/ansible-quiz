@@ -1,6 +1,3 @@
-
-
-
 var rows = 9;
 var cell_height = 100;
 var cell_width = 90;
@@ -68,16 +65,12 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
     ---------------------------------------------*/
     var updateJsonData = function(editor, index){
         editor.getSession().clearAnnotations()
-        // markerId && editor.getSession().removeMarker(markerId)
         yamlString = editor.getValue();
 
         try{
-            //$scope.jsonData[index] = YAML.parse(yamlString);
             $scope.jsonData[index] = jsyaml.load(yamlString)
-            //console.log($scope.jsonData[index])
         }catch(err) {
-          //console.log(err.message);
-          // markerId = editor.session.addMarker(new Range(err.mark.line, err.mark.column, err.parsedLine, err.mark.column+1), "myMarker");
+
           if(!$scope.current_question.hideAnnotations){
             editor.getSession().setAnnotations([{
               row: err.mark.line || editor.getSelectionRange().start.row,
@@ -242,10 +235,6 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
         copy_of_jsonData = JSON.parse(JSON.stringify(copy_of_jsonData).replace(/\s/g,''))
         copy_of_expected_answer = JSON.parse(JSON.stringify(copy_of_expected_answer).replace(/\s/g,''))
 
-        // No variable separation required for variables
-        // copy_of_jsonData = JSON.parse(JSON.stringify(copy_of_jsonData).replace(/{\s+/g,'{').replace(/\s+}/g,'}'))
-        // copy_of_expected_answer = JSON.parse(JSON.stringify(copy_of_expected_answer).replace(/{\s+/g,'{').replace(/\s+}/g,'}'))
-
         // Replace single quotes with double quotes
         copy_of_jsonData = JSON.parse(JSON.stringify(copy_of_jsonData).replace(/\'/g, '\\"'))
         copy_of_expected_answer = JSON.parse(JSON.stringify(copy_of_expected_answer).replace(/\'/g, '\\"'))
@@ -393,9 +382,6 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
 
     $scope.showSolution = function(){
         $scope.showSolutionFlag = !$scope.showSolutionFlag
-        // if($scope.showSolutionFlag){
-        //     solutionEditor.setValue(YAML.stringify($scope.current_question.answer, 10), 1);
-        // }
     }
 
     $scope.resetAnswer = function(){
@@ -430,8 +416,8 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
 
     var questions_file = $scope.questions_override.questions || "questions_ansible_loops"
 
-    $scope.feedback_url = $sce.trustAsResourceUrl("https://docs.google.com/forms/d/e/1FAIpQLSc1PLnyUbidMu1vgCM_sE5w76xDCTrHs8-lI02TaWiwy6sG8A/viewform?embedded=true&usp=pp_url&entry.1324405225=" + questions_file);
-//	$.ajaxSetup({ cache: true })
+    $scope.feedback_url = $sce.trustAsResourceUrl("CHANGEME" + questions_file);
+
     $.getScript( "static/" + ( questions_file + ".js"))
       .done(function( script, textStatus ) {
         $scope.questions = questions;
