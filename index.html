@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/app.css" />
+
+
+    <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/jsondiffpatch/dist/jsondiffpatch.umd.min.js"></script>
+        <link rel="stylesheet" href="static/json-diff-formatters/style.css" type="text/css" />
+        <link rel="stylesheet" href="static/json-diff-formatters/html.css" type="text/css" />
+        <link rel="stylesheet" href="static/json-diff-formatters/annotated.css" type="text/css" />
+</head>
+<body>
+    <!-- content -->
+
+    <div>
+      <!-- Content here -->
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+     <div class="row">
+
+         <div class="col s5 center" ng-show="lastQuestion && correct_answer" >
+           <h3 ng-class="{'black-text': lastQuestion && correct_answer}" class="white-text">Congratulations!!!!</h3>
+           <iframe ng-src="{{ feedback_url }}" width="640" height="1155" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+         </div>
+
+        <div class="col s5" ng-hide="lastQuestion && correct_answer">
+
+                <div ng-show="showSolutionFlag" class="row">
+                  <div class="col s12">
+                    <ul id="solutionTabs" class="tabs">
+                      <li ng-repeat="file in current_question.files" class="tab col s3"><a href="#solutiontab-{{ $index }}">{{ file.name }}</a></li>
+                    </ul>
+                  </div>
+                  <div ng-repeat="file in current_question.files" id="solutiontab-{{ $index }}" class="col s12" style="height: 80vh;">
+                    <div class="solutionEditor" id="solutionEditor-{{ $index }}">
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div ng-show="!showSolutionFlag" class="animated questions_panel {{ question_state }}" style="margin-top: 48px; height: 80vh;">
+                    <div class="white-text" role="alert">
+
+
+                      <div class="center">
+                        <span ng-repeat="question in questions track by $index" ng-class="{'green pulse': (current_question_number == $index)}" class="status-bar-items animated infinte" >
+                          <!--{{ answer_status }}-->
+                          {{ $index + 1 }}
+                        </span>
+                        <button ng-if="!correct_answer" ng-class="{disabled: lastQuestion}"  ng-click="nextQuestion()" type="button" class="waves-effect waves-light btn-floating right"> > </button>
+                        <button ng-if="!correct_answer" ng-class="{disabled: current_question_number < 1}" ng-click="previousQuestion()" type="button" class="waves-effect waves-light btn-floating right"> < </button>
+                      </div>
+
+                        <h5>{{ current_question.title }}</h5>
+
+                        <p markdown-to-html="current_question.question" ng-show="current_question.question"></p>
+                        <p markdown-to-html="current_question.subText" ng-show="current_question.subText"></p>
+
+                        <!-- <div class="">
+                          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated zoomIn waves-effect waves-light btn">Next</button>
+                        </div> -->
+
+                        <div ng-show="showHintFlag">
+                          Hint:
+                          <div id="visual" ></div>
+                        </div>
+                  </div>
+                </div>
+
+                <!--{{ jsonData }}-->
+
+            <!--<div id="drawing-pad"></div>-->
+        </div>
+        <div class="col s7">
+
+          <div class="row">
+            <div class="col s12">
+              <ul id="inputTabs" class="tabs">
+                <li ng-repeat="file in current_question.files" class="tab col s3"><a href="#tab-{{ $index }}">{{ file.name }} <i ng-show="submittedAnswer && file.state == false" class="material-icons animated infinite flash">error</i><i ng-show="file.state" class="material-icons">done</i></a></li>
+              </ul>
+            </div>
+            <div ng-repeat="file in current_question.files" id="tab-{{ $index }}" class="col s12" style="height: 80vh;">
+              <div class="editor" id="editor-{{ $index }}">
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated flash waves-effect waves-light btn"><i class="material-icons">thumb_up</i> Correct! Next Question</button>
+          <button ng-if="!correct_answer" ng-click="submitSolution()" type="button" class="waves-effect waves-light btn blue"><span ng-if="!correct_answer"><i class="material-icons">send</i> Submit Solution</span></button>
+          <button ng-if="!correct_answer" ng-click="showHint()" class="waves-effect waves-light btn light-blue"><i class="material-icons">remove_red_eye</i><span ng-if="!showHintFlag"> Show Hint</span> <span ng-if="showHintFlag">Hide Hint</span></button>
+          <button ng-if="!correct_answer" ng-click="showSolution()" class="waves-effect waves-light btn"><i class="material-icons">remove_red_eye</i><span ng-if="!showSolutionFlag"> Show Solution</span> <span ng-if="showSolutionFlag">Hide Solution</span></button>
+          <button ng-if="!correct_answer" ng-click="resetAnswer()" type="button" class="waves-effect waves-light btn red right"><i class="material-icons">replay</i> Reset Answer</button>
+          </div>
+
+
+
+        </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>{{ modal_header }}</h4>
+            <p>{{ modal_message }}</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Ok</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- dependencies -->
+    <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
+    <script src="ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+
+    <script src="ajax/libs/ace/1.4.2/ace.js"></script>
+    <script src="ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="ajax/libs/angular-sanitize/1.5.11/angular-sanitize.min.js"></script>
+    <script src="ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script>
+
+    <script src="ajax/libs/yamljs/0.3.0/yaml.min.js"></script>
+
+
+    <script src="ajax/libs/js-yaml/3.13.1/js-yaml.min.js"></script>
+
+    <!-- code -->
+    <script src="static/inventory-reader-2.js"></script>
+    <script src="static/ansible-json-test.js"></script>
+    <!-- <script src="static/questions_ansible_playbook.js"></script> -->
+    <script src="static/ace-editor.js"></script>
+
+</body>
+</html>
