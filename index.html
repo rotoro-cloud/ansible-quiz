@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
     <link rel="stylesheet" href="ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link rel="stylesheet" href="ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="ajax/libs/animate.css/3.7.0/animate.min.css">
@@ -24,7 +23,7 @@
      <div class="row">
 
          <div class="col s5 center" ng-show="lastQuestion && correct_answer" >
-           <h3 ng-class="{'black-text': lastQuestion && correct_answer}" class="white-text">Congratulations!!!!</h3>
+           <h3 ng-class="{'black-text': lastQuestion && correct_answer}" class="white-text">Поздравления!!</h3>
            <iframe ng-src="{{ feedback_url }}" width="640" height="1155" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
          </div>
 
@@ -63,7 +62,7 @@
                         <p markdown-to-html="current_question.subText" ng-show="current_question.subText"></p>
 
                         <!-- <div class="">
-                          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated zoomIn waves-effect waves-light btn">Next</button>
+                          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated zoomIn waves-effect waves-light btn">Следующий</button>
                         </div> -->
 
                         <div ng-show="showHintFlag">
@@ -94,11 +93,11 @@
               </div>
             </div>
           </div>
-          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated flash waves-effect waves-light btn"><i class="material-icons">thumb_up</i> Correct! Next Question</button>
-          <button ng-if="!correct_answer" ng-click="submitSolution()" type="button" class="waves-effect waves-light btn blue"><span ng-if="!correct_answer"><i class="material-icons">send</i> Submit Solution</span></button>
-          <button ng-if="!correct_answer" ng-click="showHint()" class="waves-effect waves-light btn light-blue"><i class="material-icons">remove_red_eye</i><span ng-if="!showHintFlag"> Show Hint</span> <span ng-if="showHintFlag">Hide Hint</span></button>
-          <button ng-if="!correct_answer" ng-click="showSolution()" class="waves-effect waves-light btn"><i class="material-icons">remove_red_eye</i><span ng-if="!showSolutionFlag"> Show Solution</span> <span ng-if="showSolutionFlag">Hide Solution</span></button>
-          <button ng-if="!correct_answer" ng-click="resetAnswer()" type="button" class="waves-effect waves-light btn red right"><i class="material-icons">replay</i> Reset Answer</button>
+          <button ng-if="correct_answer && !lastQuestion" ng-click="nextQuestion()" type="button" class="animated flash waves-effect waves-light btn"><i class="material-icons">thumb_up</i> Верно! Следующий вопрос</button>
+          <button ng-if="!correct_answer" ng-click="submitSolution()" type="button" class="waves-effect waves-light btn blue"><span ng-if="!correct_answer"><i class="material-icons">send</i> Проверить</span></button>
+          <button ng-if="!correct_answer" ng-click="showHint()" class="waves-effect waves-light btn light-blue"><i class="material-icons">remove_red_eye</i><span ng-if="!showHintFlag"> Показать подсказку</span> <span ng-if="showHintFlag">Спрятать подсказку</span></button>
+          <button ng-if="!correct_answer" ng-click="showSolution()" class="waves-effect waves-light btn"><i class="material-icons">remove_red_eye</i><span ng-if="!showSolutionFlag"> Показать решение</span> <span ng-if="showSolutionFlag">Спрятать решение</span></button>
+          <button ng-if="!correct_answer" ng-click="resetAnswer()" type="button" class="waves-effect waves-light btn red right"><i class="material-icons">replay</i> Сбросить ответ</button>
           </div>
 
 
@@ -122,7 +121,6 @@
     <!-- dependencies -->
     <script src="ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
     <script src="ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
 

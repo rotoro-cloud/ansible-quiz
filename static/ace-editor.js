@@ -325,8 +325,8 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
           if(user_initiated){
               syntex_error_shown = true;
               $scope.showHintFlag = false;
-              $scope.modal_header = "Syntax Error"
-              $scope.modal_message = "There is an error with the structure of the file - " + file.name + ". Fix it and then try again."
+              $scope.modal_header = "Синтаксическая ошибка"
+              $scope.modal_message = "Присутствует ошибка в файле - " + file.name + ". Поправь и попробуй снова."
               modal_instance.open();
           }
           file.state = false;
@@ -343,8 +343,8 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
         $scope.question_state = "teal darken-3";
       }else{
         if(user_initiated && !syntex_error_shown && !$scope.showHintFlag){
-            $scope.modal_header = "Answer does not match"
-            $scope.modal_message = "The given answer does not match expected answer. Make sure you used all the correct details asked in the question. To view the difference try using the Show Hint button."
+            $scope.modal_header = "Ответы не совпадают"
+            $scope.modal_message = "Данный ответ не совпадает с ожидаемым. Убедись, что ты выполнил все заданные в вопросе условия. Чтобы посмотреть разницу используй кнепку 'Смотреть подсказку'."
             modal_instance.open();
         }
       }
