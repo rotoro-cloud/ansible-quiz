@@ -415,6 +415,7 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
     $scope.questions_override = $location.search();
 
     var questions_file = $scope.questions_override.questions || "questions_ansible_loops"
+    console.log($scope.questions_override, questions_file);
 
     $scope.feedback_url = $sce.trustAsResourceUrl("https://docs.google.com/forms/d/e/1FAIpQLSe9wIeyh0C4A7qzkvVcJUiCc_XiVpxsd2Tm8cK3-8ZX_R0GcQ/viewform?embedded=true&entry.87961767=" + questions_file);
 
