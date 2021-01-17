@@ -1,7 +1,7 @@
 var questions = [
     {
         "title": "Ansible Inventory",
-        "question": "У нас есть одинаковые inventory файлы для 3 серверов в списке. Добавь четвертый с именем `server4.domain.com`",
+        "question": "У нас есть одинаковые записи в inventory файле для 3 серверов в списке. Добавь четвертый сервер с именем `server4.domain.com`",
         "subText": "",
         "files" : [
           {
@@ -48,7 +48,7 @@ db1 ansible_host=server4.domain.com`
     },
     {
         "title": "Ansible Inventory",
-        "question": "Вебсерверы на linux, но сервер базы данных на windows. Добавь дополнительные параметры в каждую строку, чтобы были `ansible_connection`, `ansible_user` и `password`. Используй приведенную ниже таблицу учетных данных с информацией о доступе.",
+        "question": "Наши вебсерверы на Linux, но сервер базы данных на Windows. Добавь дополнительные параметры в каждую строку, чтобы были `ansible_connection`, `ansible_user` и `password`. Используй приведенную ниже таблицу учетных данных с информацией о доступе.",
         "subText": `
 | Alias    | Host                | Connection  | User           | Password     |
 | -------- |:-------------------:| :----------:|:--------------:|:-----------: |
@@ -132,9 +132,9 @@ db1`
     },
     {
         "title": "Ansible Inventory",
-        "question": "Давай создадим группу групп. Создай группу с названием `all_servers` и добавь в нее ранее созданные группы `web_servers` и `db_servers`.",
+        "question": "Давай создадим группу, содержащую группы. Создай группу с названием `all_servers` и добавь в нее ранее созданные группы `web_servers` и `db_servers`.",
         "subText": `
-> Note: Syntax: <br>
+> ИНФО: Syntax: <br>
 [parent\\_group:children] <br>
 child\\_group1 <br>
 child\\_group2
