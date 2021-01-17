@@ -57,7 +57,7 @@ db1 ansible_host=server4.domain.com`
 | web3     | server3.domain.com | SSH         | root           | Password123! |
 | db1      | server4.domain.com | Windows     | administrator  | Password123! |
 
-> Note: For linux use \`ansible_ssh_pass\` and for windows use \`ansible_password\`. Connector for windows is \`winrm\`
+> ИНФО: Для Linux используй \`ansible_ssh_pass\`, а для Windows используй \`ansible_password\`. Коннектор для Windows \`winrm\`
         `,
         "files" : [
           {
@@ -201,7 +201,7 @@ db_servers`
 |web_node2   | web02.xyz.com  | Win     | administrator |  Win$Pass    |
 |web_node3   | web03.xyz.com  | Win     | administrator |  Win$Pass    |
 
-Group the servers together based on this table
+Сгруппируй серверы на основе этой таблицы:
 
 | Group             | Members                           |
 | ------------------|-----------------------------------|
