@@ -101,7 +101,7 @@ dallas_nodes`
     },
     {
         "title": "Ansible Playbooks",
-        "question": "Создай новый `play` с названием `Execute a command to display hosts file contents on web_node2`, который выполнит команду `cat /etc/hosts` на ноде `web_node2` и название `task` должно быть `Execute a command to display hosts file`.",
+        "question": "Создай новый `play` с названием `Execute a command to display hosts file contents on web_node2`, который выполнит команду `cat /etc/hosts` на ноде `web_node2`, a название `task` должно быть `Execute a command to display hosts file`.",
         "subText": "Вкладка на inventory-файл находится вверху справа",
         "do_not_remove_name": true,
         "files" : [
