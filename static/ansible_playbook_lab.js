@@ -154,11 +154,11 @@ dallas_nodes`
 
 > ИНФО: Используй приведенное ниже описание для \`plays\` и \`tasks\`.
 
-1. \`Stop\` the \`web\` services on web server nodes - \`service httpd stop\`
-2. \`Shutdown\` the \`database\` services on db server nodes - \`service mysql stop\`
-3. \`Restart\` \`all\` servers (web and db) at once - \`/sbin/shutdown -r\`
-4. \`Start\` the \`database\` services on db server nodes - \`service mysql start\`
-5. \`Start\` the \`web\` services on web server nodes - \`service httpd start\`
+1. \`Останови\` \`web\`-службы на веб-серверах - \`service httpd stop\`
+2. \`Останови\` \`db\`-службы на серверах баз данных - \`service mysql stop\`
+3. \`Перегрузи\` \`все\` сервера (\`web\` и \`db\`) за один раз - \`/sbin/shutdown -r\`
+4. \`Запусти\` \`db\`-службы на узлах баз данных - \`service mysql start\`
+5. \`Запусти\` \`web\`-службы на узлах веб-серверов - \`service httpd start\`
 
 > Внимание: Не используй этот \`playbook\` в реальной установке. Есть лучшие варианты реализвации этих действий. Мы делаем это для закрепления основных навыков понимания \`playbooks\`.
         `,
