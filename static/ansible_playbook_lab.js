@@ -14,7 +14,7 @@ var questions = [
     },
     {
         "title": "Ansible Playbooks",
-        "question": "Измени `task` так, чтобы в нем выполнялась команда <code>cat /etc/hosts</code> и измени его название (`name`) на `Execute a command to display hosts file`",
+        "question": "Измени `task` так, чтобы в нем выполнялась команда `cat /etc/hosts` и измени его название (`name`) на `Execute a command to display hosts file`",
         "subText": "",
         "do_not_remove_name": true,
         "files" : [
@@ -27,7 +27,7 @@ var questions = [
     },
     {
         "title": "Ansible Playbooks",
-        "question": "Добавь в `playbook` еще один `task`. Этот новый `task` должен выполнять команду <code>cat /etc/hosts</code> и его название должно быть <code>Execute a command to display hosts file</code>",
+        "question": "Добавь в `playbook` еще один `task`. Этот новый `task` должен выполнять команду `cat /etc/hosts` и его название должно быть `Execute a command to display hosts file`",
         "subText": "",
         "do_not_remove_name": true,
         "files" : [
@@ -40,7 +40,7 @@ var questions = [
     },
     {
         "title": "Ansible Playbooks",
-        "question": "Мы запустили и проверили все эти `tasks` на `localhost`. Теперь мы хотим запустить их в боевой среде на хосте `web_node1`. Обновил этот `play`, чтобы запуск был на узле <code>web_node1</code>.",
+        "question": "Мы запустили и проверили все эти `tasks` на `localhost`. Теперь мы хотим запустить их в боевой среде на хосте `web_node1`. Обнови этот `play`, чтобы запуск был на узле `web_node1`.",
         "subText": "",
         "files" : [
           {
