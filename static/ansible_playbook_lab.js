@@ -1,20 +1,20 @@
 var questions = [
     {
         "title": "Ansible Playbooks",
-        "question": "Установи название (параметр `name`) в `play` в значение <code>Execute a date command on localhost</code>",
+        "question": "Установи название (параметр `name`) в `play` в значение `Execute a date command on localhost`",
         "subText": "",
         "do_not_remove_name": true,
         "files" : [
           {
           "name": "simple-playbook.yml",
-          "stage": [{"name":"Play 1", "hosts":"localhost", "tasks":[{"name":"Execute a date command", "command":"date"}]}],
+          "stage": [{"name":"Play1", "hosts":"localhost", "tasks":[{"name":"Execute a date command", "command":"date"}]}],
           "answers": [[{"name":"Execute a date command on localhost", "hosts":"localhost", "tasks":[{"name":"Execute a date command", "command":"date"}]}]]
           }
         ]
     },
     {
         "title": "Ansible Playbooks",
-        "question": "Измени `task` так, чтобы в нем выполнялась команда <code>cat /etc/hosts</code> и измени его название (`name`) на <code>Execute a command to display hosts file</code>",
+        "question": "Измени `task` так, чтобы в нем выполнялась команда <code>cat /etc/hosts</code> и измени его название (`name`) на `Execute a command to display hosts file`",
         "subText": "",
         "do_not_remove_name": true,
         "files" : [
