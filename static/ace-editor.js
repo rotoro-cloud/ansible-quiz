@@ -43,96 +43,6 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
 
 
 
-//////
-    const colors = [ "DodgerBlue", "OliveDrab", "Gold", "pink", "SlateBlue", "lightblue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson" ];
-    const mp = 180;
-
-    const confetti = () => {
-
-        let particles = [];
-        let ratio = window.devicePixelRatio;
-        let c = document.createElement('canvas');
-        let ctx = c.getContext('2d');
-        let W = window.innerWidth* ratio;
-        let H = window.innerHeight* ratio;
-
-        c.width = W;
-        c.height = H;
-        c.style.position = 'absolute';
-        c.style.left = '0px';
-        c.style.top = '0px';
-        c.style.pointerEvents = 'none';
-        c.style.zIndex = 9999; 
-
-        document.body.appendChild(c);
-
-        for(var i = 0; i < mp; i++) {
-            particles.push({
-                x: Math.random() * W,
-                y: 1,
-                r: Math.random() * 15 + 1,
-                d: Math.random() * mp,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                tilt: Math.floor(Math.random() * 5) -5,
-                fade: .03,
-                opacity: 1,
-                angle: 0
-            });
-        }
-
-        render(particles, ctx, W, H);
-        setTimeout(() => document.body.removeChild(c), 5000);
-    }
-
-    const render = (particles, ctx, W, H) => {
-        requestAnimationFrame(() => render(particles, ctx, W, H));
-        ctx.clearRect(0, 0, W, H);
-
-        particles.forEach((p, i) => {
-
-            p.angle += 0.01;
-            p.x += Math.sin(p.angle) * 2;
-            p.y += Math.cos(p.angle * p.d) + 0.004 + p.r / 2;
-
-            if(p.x > W +5 || p.x < -5 || p.y > H) {
-                if (i % 3 > 0)
-                {
-                    particles[i] = {
-                        x: Math.random() * W,
-                        y: -10,
-                        r: p.r,
-                        d: p.d,
-                        color: p.color,
-                        tilt: p.tilt
-                    };
-                } else {
-                        particles[i] = {
-                        x: W + 5,
-                        y: Math.random() * H,
-                        r: p.r,
-                        d: p.d,
-                        color: p.color,
-                        tilt: p.tilt
-                    };
-                }
-            }
-            p.opacity -= 0.001;
-
-            if(p.opacity < 0 || p.radius < 0) return;
-
-            ctx.beginPath();
-            ctx.globalAlpha = p.opacity;
-            ctx.lineWidth = p.r;
-            ctx.strokeStyle = p.color;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
-            ctx.stroke();
-        });
-
-        return ctx;
-    }
-//////
-
 
 
 
@@ -526,6 +436,96 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
       .fail(function( jqxhr, settings, exception ) {
         console.error(exception);
     });
+
+//////
+    const colors = [ "DodgerBlue", "OliveDrab", "Gold", "pink", "SlateBlue", "lightblue", "Violet", "PaleGreen", "SteelBlue", "SandyBrown", "Chocolate", "Crimson" ];
+    const mp = 180;
+
+    const confetti = () => {
+
+        let particles = [];
+        let ratio = window.devicePixelRatio;
+        let c = document.createElement('canvas');
+        let ctx = c.getContext('2d');
+        let W = window.innerWidth* ratio;
+        let H = window.innerHeight* ratio;
+
+        c.width = W;
+        c.height = H;
+        c.style.position = 'absolute';
+        c.style.left = '0px';
+        c.style.top = '0px';
+        c.style.pointerEvents = 'none';
+        c.style.zIndex = 9999; 
+
+        document.body.appendChild(c);
+
+        for(var i = 0; i < mp; i++) {
+            particles.push({
+                x: Math.random() * W,
+                y: 1,
+                r: Math.random() * 15 + 1,
+                d: Math.random() * mp,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                tilt: Math.floor(Math.random() * 5) -5,
+                fade: .03,
+                opacity: 1,
+                angle: 0
+            });
+        }
+
+        render(particles, ctx, W, H);
+        setTimeout(() => document.body.removeChild(c), 5000);
+    }
+
+    const render = (particles, ctx, W, H) => {
+        requestAnimationFrame(() => render(particles, ctx, W, H));
+        ctx.clearRect(0, 0, W, H);
+
+        particles.forEach((p, i) => {
+
+            p.angle += 0.01;
+            p.x += Math.sin(p.angle) * 2;
+            p.y += Math.cos(p.angle * p.d) + 0.004 + p.r / 2;
+
+            if(p.x > W +5 || p.x < -5 || p.y > H) {
+                if (i % 3 > 0)
+                {
+                    particles[i] = {
+                        x: Math.random() * W,
+                        y: -10,
+                        r: p.r,
+                        d: p.d,
+                        color: p.color,
+                        tilt: p.tilt
+                    };
+                } else {
+                        particles[i] = {
+                        x: W + 5,
+                        y: Math.random() * H,
+                        r: p.r,
+                        d: p.d,
+                        color: p.color,
+                        tilt: p.tilt
+                    };
+                }
+            }
+            p.opacity -= 0.001;
+
+            if(p.opacity < 0 || p.radius < 0) return;
+
+            ctx.beginPath();
+            ctx.globalAlpha = p.opacity;
+            ctx.lineWidth = p.r;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
+            ctx.stroke();
+        });
+
+        return ctx;
+    }
+//////
 
 
 
