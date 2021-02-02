@@ -436,7 +436,7 @@ app.controller('myCtrl', ['$scope', '$sce', '$timeout', '$location', '$showdown'
         $scope.showHintFlag = false;
         $('#visual').html("");
         $scope.question_state = "teal darken-3";
-        сonfetti();
+        confetti();
       }else{
         if(user_initiated && !syntex_error_shown && !$scope.showHintFlag){
             $scope.modal_header = "Ответы не совпадают"
