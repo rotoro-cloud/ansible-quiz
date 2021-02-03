@@ -2,14 +2,34 @@ var questions = [
     
     {
         "title": "Ansible Conditionals",
-        "question": "В этом playbook мы хотим, чтобы происходило добавление новой строки в файл `/etc/resolv.conf` для `nameserver`.",
-        "subText": `
-         `,
+        "question": "Приведенный playbook пытается запустить службу `service` на `all_servers`. Используй условие `when`, чтобы запустить task в случае если `ansible_host` является сервером баз данных.",
+        "subText": "Обратись к inventory-файлу, чтобы определить имя сервера базы данных.",
         "files" : [
           {
-            "name": "sample-playbook.yml",
-            "stage": [{"name":"Add name server entry if not already entered","hosts":"localhost","tasks":[{"shell":"cat /etc/resolv.conf"},{"shell":"echo \"nameserver 10.0.250.10\" >> /etc/resolv.conf"}]}],
-            "answers": [[{"name":"Add name server entry if not already entered","hosts":"localhost","tasks":[{"shell":"cat /etc/resolv.conf","register":"command_output"},{"shell":"echo \"nameserver 10.0.250.10\" >> /etc/resolv.conf","when":"command_output.stdout.find(\"10.0.250.10\") == -1"}]}]]
+          "name": "sample-playbook.yml",
+          "stage": [{"name":"Execute a script on all web server nodes","hosts":"all_servers","tasks":[{"service":"name=mysql state=started"}]}],
+          "answers": [[{"name":"Execute a script on all web server nodes","hosts":"all_servers","tasks":[{"service":"name=mysql state=started","when":"ansible_host==\"server4.company.com\""}]}]]
+        },{
+            "name": "inventory",
+            "mode": "ini",
+            "readOnly": true,
+            "stage": `# Sample Inventory File
+
+# Web Servers
+web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+
+# Database Servers
+db1 ansible_host=server4.company.com ansible_connection=winrm ansible_user=administrator ansible_ssh_pass=Password123!
+
+[web_servers]
+web1
+web2
+web3
+
+[db_servers]
+db1`
           }
         ]
     }
