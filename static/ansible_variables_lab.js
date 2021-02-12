@@ -44,7 +44,7 @@ localhost ansible_connection=localhost nameserver_ip=10.1.250.10 snmp_port=160-1
     {
         "title": "Ansible Variables",
         "question": "Мы напечатали некоторою персональную информацию на экране. Мы бы хотели перенести `car_model`, `country_name` and `title` в переменные, определенные на уровне play.",
-        "subText": "Создай три новые пременные (`car_model`, `country_name` and `title`) на уровне play и присвой им значения. Далее используй эти переменные в tasks.",
+        "subText": "Создай три новые пременные (`car_model`, `country_name` and `title`) на уровне play и присвой им значения, какими они были в исходном playbook. Далее используй эти переменные в tasks.",
         "files" : [
           {
             "name": "sample-playbook.yml",
