@@ -2,7 +2,7 @@ var questions = [
     
     {
         "title": "Ansible Conditionals",
-        "question": "Приведенный playbook пытается запустить службу `mysql` на `all_servers`. Используй условие `when`, чтобы запустить task в случае если `ansible_host` является сервером баз данных.",
+        "question": "Приведенный playbook пытается запустить службу `mysql` на `all_servers`. Используй условие `when`, чтобы запустить task в случае, если `ansible_host` является сервером баз данных.",
         "subText": "Обратись к inventory-файлу, чтобы определить имя сервера базы данных.",
         "files" : [
           {
